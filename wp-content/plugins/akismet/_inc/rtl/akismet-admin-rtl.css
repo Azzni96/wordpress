@@ -388,7 +388,7 @@ h3.akismet-enter-api-key-box__header {
 
 .akismet-activate {
 	align-items: center;
-	/* background-image is defined via an inline style in class.akismet-home.php */
+	/* background-image is defined via an inline style in class.akismet-index.php */
 	background-color: var(--akismet-color-light-grey);
 	background-position: calc(100% - (100% - 1em)) center;
 	background-repeat: no-repeat;
