@@ -1,5 +1,5 @@
 <footer>
-    <p>&copy; 2024 ILE</p>
+    <p>&copy; 2025 Nihad</p>
 </footer>
 </div>
 </body>

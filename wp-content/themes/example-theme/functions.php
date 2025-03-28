@@ -1,5 +1,9 @@
 <?php
-function theme_setup() : void {
+require_once( __DIR__ . '/inc/article-function.php' );
+require_once( __DIR__ . '/inc/random-image.php' );
+
+function theme_setup(): void
+{
     add_theme_support( 'title-tag' );
     add_theme_support( 'post-thumbnails' );
     add_theme_support( 'custom-header' );
@@ -14,14 +18,35 @@ function theme_setup() : void {
 
     // Add custom image sizes
     add_image_size( 'custom-header', 1200, 400, true ); // Custom header size
+
+    add_theme_support('html5', array('search-form'));
 }
 
 add_action( 'after_setup_theme', 'theme_setup' );
-function register_my_menu() : void{
 
+// Päävalikko
+function register_my_menu(): void
+{
     register_nav_menu( 'main-menu', __( 'Main Menu' ) );
 }
 
 add_action( 'after_setup_theme', 'register_my_menu' );
 
-?>
+// filters
+
+function search_filter($query) {
+    if ($query->is_search) {
+        $query->set('category_name', 'products');
+    }
+    return $query;
+}
+add_filter('pre_get_posts','search_filter');
+// breadcrumb
+function my_breadcrumb_title_swapper( $title,  $type) {
+    if ( in_array( 'home', $type ) ) {
+        $title = __( 'Home' );
+    }
+
+    return $title;
+}
+add_filter( 'bcn_breadcrumb_title', 'my_breadcrumb_title_swapper', 3, 10 );
